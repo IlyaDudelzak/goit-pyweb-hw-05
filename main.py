@@ -3,6 +3,7 @@ from sys import argv
 import platform
 import aiohttp
 import asyncio
+import pprint
 
 days=2
 currencies = ["EUR", "USD"]
@@ -14,7 +15,8 @@ async def date_list(start, length, frwd=True):
             yield start + delta
         else:
             yield start - delta
-    raise StopIteration
+    #raise StopIteration
+
 async def date_to_string(date):
     return date.strftime("%d.%m.%Y")
 
@@ -56,7 +58,7 @@ async def data_collector():
 
 async def main():
     await check_arguments()
-    print(await data_collector())
+    pprint.pprint(await data_collector())
 
 if __name__ == "__main__":
     if platform.system() == 'Windows':
